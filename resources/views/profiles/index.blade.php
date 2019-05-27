@@ -12,7 +12,7 @@
                 <a href="/p/create">Add new Post</a>
 
             </div>
-            <a href="">Edit Profile</a>
+            <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
 
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
