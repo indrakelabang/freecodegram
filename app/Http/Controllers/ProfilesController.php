@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Intervention\Image\Facades\Image;
+
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 
 class ProfilesController extends Controller
@@ -38,11 +39,12 @@ class ProfilesController extends Controller
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
             $image->save();
 
+            $imageArray = ['image' => $imagePath];
         }
 
         auth()->user()->profile->update(array_merge(
             $data,
-            ['image' => $imagePath]
+            $imageArray ?? []
         ));
 
         return redirect("/profile/{$user->id}");
